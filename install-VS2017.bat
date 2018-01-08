@@ -9,12 +9,16 @@ IF "%Ver%"=="" (
   pause
   goto:eof
 )
-SET "NET471_CREATORS=0x709fc"
 
-if NOT "%NET471_CREATORS%"=="%Ver%" (
-  echo .NET Framework 4.7.1 is required.
-  pause
-  goto:eof
+SET "NET471_FALL_CREATORS=0x709fc"
+SET "NET471_OTHER=0x709fe"
+
+if NOT "%Ver%"=="%NET471_FALL_CREATORS%" (
+  if NOT "%Ver%"=="%NET471_OTHER%" (
+    echo .NET Framework 4.7.1 is required.
+    pause
+    goto:eof
+  )
 )
 
 set NuGet=Build\Tools\nuget.exe
